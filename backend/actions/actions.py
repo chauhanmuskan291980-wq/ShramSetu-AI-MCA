@@ -5,9 +5,6 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 
 
-# ---------------------------------------------------
-# ACTION 1: Reset ESIC Slots
-# ---------------------------------------------------
 
 class ActionResetESICSlots(Action):
 
