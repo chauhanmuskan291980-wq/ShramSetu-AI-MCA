@@ -19,10 +19,7 @@ class ActionResetESICSlots(Action):
         ]
 
 
-# ---------------------------------------------------
-# ACTION 2: Check ESIC Eligibility
-# ---------------------------------------------------
-
+ 
 class ActionCheckESICEligibility(Action):
 
     def name(self) -> Text:
