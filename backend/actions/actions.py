@@ -108,10 +108,7 @@ class ActionCheckESICEligibility(Action):
         return []
 
 
-# ---------------------------------------------------
-# ACTION 3: Calculate PF
-# ---------------------------------------------------
-
+ 
 class ActionCalculatePF(Action):
 
     def name(self):
