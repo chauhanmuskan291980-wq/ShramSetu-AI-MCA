@@ -252,10 +252,7 @@ class ActionDetectLanguage(Action):
         return [SlotSet("lang", "en")]
 
 
-# ---------------------------------------------------
-# COMPLAINT LETTER
-# ---------------------------------------------------
-
+ 
  
 class ActionGenerateComplaint(Action):
 
