@@ -1,0 +1,24 @@
+ESIC FLOW
+
+check_esic_eligibility
+        ↓
+action_detect_language
+        ↓
+action_reset_esic_slots
+        ↓
+esic_form
+   (salary + employer_registered)
+        ↓
+utter_checking
+        ↓
+action_check_esic_eligibility
+        ↓
+if employer not registered
+        ↓
+Generate Complaint Button
+        ↓
+complaint_form
+        ↓
+action_generate_complaint_pdf
+
+ 

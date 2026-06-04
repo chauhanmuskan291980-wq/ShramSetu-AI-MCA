@@ -1,0 +1,153 @@
+version: "3.1"
+
+nlu:
+
+# =========================
+# ESIC
+# =========================
+
+- intent: check_esic_eligibility
+  examples: |
+    - Am I eligible for ESIC?
+    - Can you check my ESIC eligibility?
+    - ESIC eligibility check
+    - I want to check ESIC eligibility
+    - check ESIC
+    - ESIC status
+    - ESIC पात्रता जांचें
+    - क्या मैं ESIC के लिए पात्र हूँ?
+    - ESIC चेक करो
+
+- intent: provide_salary
+  examples: |
+    - my salary is [18000](salary)
+    - [20000](salary)
+    - salary [15000](salary)
+    - I earn [21000](salary)
+    - it is [17000](salary)
+    - [12000](salary)
+
+- intent: affirm
+  examples: |
+    - yes
+    - Yes
+    - yeah
+    - correct
+    - registered
+    - it is registered
+
+- intent: deny
+  examples: |
+    - no
+    - No
+    - not registered
+    - nope
+    - it is not registered
+
+- intent: generate_complaint
+  examples: |
+    - generate complaint
+    - file a complaint
+    - create complaint letter
+    - my employer is not registered
+    - report employer to ESIC
+    - make complaint
+
+    # Hindi examples
+    - शिकायत दर्ज करनी है
+    - शिकायत करना है
+    - शिकायत पत्र बनाना है
+    - मेरे नियोक्ता के खिलाफ शिकायत करनी है
+    - ESIC में शिकायत करनी है
+    - शिकायत दर्ज करें
+    - कंपनी की शिकायत करनी है
+    - मेरे नियोक्ता ने पंजीकरण नहीं किया है
+
+
+- intent: provide_complaint_details
+  examples: |
+    - Rahul Kumar
+    - My name is Rahul Kumar
+    - ABC Pvt Ltd Delhi
+    - My employer is ABC Pvt Ltd
+    - 12 March 2022
+    - 01-01-2020
+    - 1/01/2022
+
+    # Hindi examples
+    - मेरा नाम राहुल कुमार है
+    - राहुल कुमार
+    - मेरी कंपनी ABC Pvt Ltd है
+    - मैं ABC Pvt Ltd में काम करता हूँ
+    - जॉइनिंग तारीख 12 मार्च 2022 है
+    - 12 मार्च 2022
+    - 01-01-2020
+    - 1 जनवरी 2022
+
+
+# =========================
+# PF
+# =========================
+
+- intent: calculate_pf
+  examples: |
+    - calculate my PF
+    - PF calculation
+    - I want to calculate PF
+    - calculate provident fund
+    - PF check
+    - how much PF will I get
+    - मेरा PF कितना होगा?
+    - PF की गणना करो
+    - मेरा भविष्य निधि कितना है?
+
+- intent: provide_basic_salary
+  examples: |
+    - my basic salary is [15000](salary)
+    - [10000](salary)
+    - basic salary [22000](salary)
+    - it is [18000](salary)
+    - [8900](salary)
+    - 8900
+    - 15000
+    - 22000
+    - मेरी बेसिक सैलरी [15000](salary) है
+    - [9000](salary) है
+    - 12000 है
+
+
+- intent: calculate_gratuity
+  examples: |
+    - I want to calculate gratuity
+    - Calculate my gratuity
+    - Check gratuity amount
+    - Gratuity calculation
+    - calculate gratuity
+    - gratuity check
+    - ग्रेच्युटी की गणना करो
+    - मेरी ग्रेच्युटी कितनी होगी?
+    - ग्रेच्युटी चेक करो
+    - gratuity ka calculation karo
+
+- intent: provide_last_drawn_salary
+  examples: |
+    - [8000](last_drawn_salary)
+    - my last salary is [15000](last_drawn_salary)
+    - [12000](last_drawn_salary)
+    - it is [25000](last_drawn_salary)
+    - salary [18000](last_drawn_salary)
+    - मेरी अंतिम सैलरी [20000](last_drawn_salary) है
+    - [30000](last_drawn_salary) है
+    - 45000
+    - 98000
+
+- intent: provide_years_of_service
+  examples: |
+    - [9](years_of_service)
+    - [5](years_of_service) years
+    - I worked [7](years_of_service) years
+    - [6](years_of_service) year
+    - it is [10](years_of_service)
+    - मैंने [8](years_of_service) साल काम किया
+    - [4](years_of_service) साल
+    - 12

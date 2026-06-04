@@ -1,0 +1,88 @@
+version: "3.1"
+
+rules:
+
+# =========================
+# ESIC RULES
+# =========================
+
+- rule: Start ESIC eligibility form
+  steps:
+  - intent: check_esic_eligibility
+  - action: action_detect_language
+  - action: action_reset_esic_slots
+  - action: esic_form
+  - active_loop: esic_form
+
+
+- rule: Submit ESIC eligibility form
+  condition:
+  - active_loop: esic_form
+  steps:
+  - action: esic_form
+  - active_loop: null
+  - action: utter_checking
+  - action: action_check_esic_eligibility
+
+
+# =========================
+# PF RULES
+# =========================
+
+- rule: Start PF form
+  steps:
+  - intent: calculate_pf
+  - action: action_detect_language
+  - action: action_reset_pf_slot
+  - action: pf_form
+  - active_loop: pf_form
+
+
+- rule: Submit PF form
+  condition:
+  - active_loop: pf_form
+  steps:
+  - action: pf_form
+  - active_loop: null
+  - action: action_calculate_pf
+
+
+# =========================
+# GRATUITY RULES
+# =========================
+
+- rule: Start Gratuity form
+  steps:
+  - intent: calculate_gratuity
+  - action: action_detect_language
+  - action: action_reset_gratuity_slots
+  - action: gratuity_form
+  - active_loop: gratuity_form
+
+
+- rule: Submit Gratuity form
+  condition:
+  - active_loop: gratuity_form
+  steps:
+  - action: gratuity_form
+  - active_loop: null
+  - action: action_calculate_gratuity
+
+
+  # Complaint Form Start
+
+- rule: Start Complaint Form
+  steps:
+  - intent: generate_complaint
+  - action: complaint_form
+  - active_loop: complaint_form
+
+# Complaint Form Submit
+
+- rule: Submit Complaint Form
+  condition:
+  - active_loop: complaint_form
+  steps:
+  - action: complaint_form
+  - active_loop: null
+  - action: action_generate_complaint

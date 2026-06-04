@@ -1,0 +1,243 @@
+version: "3.1"
+
+intents:
+  - check_esic_eligibility
+  - provide_salary
+  - generate_complaint
+  - provide_complaint_details
+  - affirm
+  - deny
+  - calculate_pf
+  - provide_basic_salary
+  - calculate_gratuity
+  - provide_last_drawn_salary
+  - provide_years_of_service
+  - thank_you
+  
+entities:
+  - salary
+  - last_drawn_salary
+  - years_of_service
+
+slots:
+
+  lang:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+  employee_name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: complaint_form
+            requested_slot: employee_name
+
+  employer_details:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: complaint_form
+            requested_slot: employer_details
+
+  joining_date:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: complaint_form
+            requested_slot: joining_date
+      
+
+  # -------- ESIC form slots --------
+  salary:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: salary
+      - type: from_text
+        conditions:
+          - active_loop: esic_form
+            requested_slot: salary
+
+  employer_registered:
+    type: bool
+    mappings:
+      - type: from_intent
+        intent: affirm
+        value: true
+        conditions:
+          - active_loop: esic_form
+            requested_slot: employer_registered
+
+      - type: from_intent
+        intent: deny
+        value: false
+        conditions:
+          - active_loop: esic_form
+            requested_slot: employer_registered
+
+  # -------- PF form slots --------
+  basic_salary:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: salary
+        conditions:
+          - active_loop: pf_form
+            requested_slot: basic_salary
+      - type: from_text
+        conditions:
+          - active_loop: pf_form
+            requested_slot: basic_salary
+
+  # -------- Gratuity form slots --------
+  last_drawn_salary:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: last_drawn_salary
+        conditions:
+          - active_loop: gratuity_form
+            requested_slot: last_drawn_salary
+      - type: from_text
+        conditions:
+          - active_loop: gratuity_form
+            requested_slot: last_drawn_salary
+
+  years_of_service:
+    type: float
+    mappings:
+      - type: from_entity
+        entity: years_of_service
+        conditions:
+          - active_loop: gratuity_form
+            requested_slot: years_of_service
+      - type: from_text
+        conditions:
+          - active_loop: gratuity_form
+            requested_slot: years_of_service
+
+responses:
+  utter_ask_salary:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "आपकी मासिक सैलरी कितनी है?"
+    - text: "What is your monthly salary?"
+
+  utter_ask_employer_registered:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "क्या आपका नियोक्ता ESIC के तहत पंजीकृत है?"
+      buttons:
+        - title: 'हाँ ✓'
+          payload: '/affirm'
+        - title: 'नहीं ✗'
+          payload: '/deny'
+    - text: "Is your employer registered under ESIC?"
+      buttons:
+       - title: 'Yes ✓'
+         payload: '/affirm'
+       - title: 'No ✗'
+         payload: '/deny'
+
+  utter_checking:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "आपकी पात्रता जांची जा रही है..."
+    - text: "Checking your eligibility..."
+
+  utter_ask_basic_salary:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "PF की गणना के लिए अपनी बेसिक सैलरी दर्ज करें।"
+    - text: "Please enter your basic salary to calculate PF."
+
+  utter_ask_last_drawn_salary:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "कृपया अपनी अंतिम प्राप्त मासिक वेतन राशि दर्ज करें।"
+    - text: "Please enter your last drawn monthly salary."
+
+  utter_ask_years_of_service:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "आपने कंपनी में कितने वर्ष कार्य किया है?"
+    - text: "How many years have you worked in the company?"
+ 
+
+  utter_ask_employee_name:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "कृपया अपना पूरा नाम दर्ज करें।"
+    - text: "Please enter your full name."
+
+  utter_ask_employer_details:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "कृपया अपनी कंपनी का नाम दर्ज करें।"
+    - text: "Enter your company name."
+
+  utter_ask_joining_date:
+    - condition:
+        - type: slot
+          name: lang
+          value: hi
+      text: "कृपया अपनी जॉइनिंग की तारीख बताएं।"
+    - text: "What was your date of joining?"
+
+forms:
+  esic_form:
+    required_slots:
+      - salary
+      - employer_registered
+
+  pf_form:
+    required_slots:
+      - basic_salary
+
+  gratuity_form:
+    required_slots:
+      - last_drawn_salary
+      - years_of_service
+
+  complaint_form:
+    required_slots:
+      - employee_name
+      - employer_details
+      - joining_date
+ 
+
+
+
+actions:
+  - action_reset_esic_slots
+  - action_check_esic_eligibility
+  - action_calculate_pf
+  - action_reset_pf_slot
+  - action_calculate_gratuity
+  - action_reset_gratuity_slots
+  - action_detect_language
+  - action_generate_complaint
