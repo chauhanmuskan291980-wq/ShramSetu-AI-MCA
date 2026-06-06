@@ -13,7 +13,6 @@ ShramSetu AI is a multilingual AI-powered assistant designed to help Indian work
 - AWS Cloud
 - Python backend
 - NLP + LLM-based assistant
-- WhatsApp chatbot integration
 
 ## Vision
-To bridge the gap between policy and people using AI for Bharat.
+To bridge the gap between policy and people using AI .
