@@ -41,21 +41,21 @@ class ActionCheckESICEligibility(Action):
 
         salary = float(salary)
 
-        # ---- RULE 1: Wage Rule (Prototype) ----
+       
         if salary > 21000:
             dispatcher.utter_message(
                 text="You are NOT eligible for ESIC because your salary exceeds ₹21,000."
             )
             return []
 
-        # ---- RULE 4: Employer Registration (Activation) ----
+        
         if employer_registered is False:
             dispatcher.utter_message(
                 text="You are legally eligible for ESIC, but your employer is not registered. Benefits cannot be activated. You may file a complaint."
             )
             return []
 
-        # ---- Eligible Case ----
+        
         dispatcher.utter_message(text="You are eligible for ESIC.")
         return []
 
