@@ -2,9 +2,7 @@ version: "3.1"
 
 nlu:
 
-# =========================
-# ESIC
-# =========================
+
 
 - intent: check_esic_eligibility
   examples: |
@@ -85,9 +83,7 @@ nlu:
     - 1 जनवरी 2022
 
 
-# =========================
-# PF
-# =========================
+ 
 
 - intent: calculate_pf
   examples: |
