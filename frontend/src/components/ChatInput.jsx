@@ -38,4 +38,4 @@ const ChatInput = ({ input, setInput, onSend, placeholder, onVoice, isListening 
   </footer>
 );
 
-export default ChatInput;git push -u origin main --force
+export default ChatInput; 
