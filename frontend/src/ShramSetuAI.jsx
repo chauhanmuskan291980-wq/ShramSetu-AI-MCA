@@ -96,7 +96,6 @@ const ShramSetuAI = () => {
     recognition.interimResults = true;
     recognition.continuous = false;
     recognition.maxAlternatives = 1;
-    // 2f3add09d94e418a54cb6c6de4f9484f77fcae23
     recognition.onstart = () => setIsListening(true);
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
