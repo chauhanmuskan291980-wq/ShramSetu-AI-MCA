@@ -229,9 +229,6 @@ forms:
       - employer_details
       - joining_date
  
-
-
-
 actions:
   - action_reset_esic_slots
   - action_check_esic_eligibility
